@@ -97,6 +97,11 @@ challenges:
   - type: terminal
     title: Shell
     hostname: kubernetes
+  - type: service
+    title: Kubernetes
+    hostname: kubernetes
+    port: 8001
+    path: "/api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy/#!/deployment?namespace=default"
 developers:
 - tettaji@xebia.com
 - eswets@gmail.com
