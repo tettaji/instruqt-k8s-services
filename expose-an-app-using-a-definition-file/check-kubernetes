@@ -6,6 +6,11 @@ if [ $COMMAND -eq 0 ]; then
 fi
 
 SERVICE=$(kubectl get svc nginx -o json)
+# Check if we have a result
+if [ $? == 1 ]; then
+  echo "FAIL: The service wasn't correctly created. Check if your YAML definition is correct"
+  exit 1
+fi
 
 PORT=$(echo $SERVICE | jq -r '.spec.ports[0].port')
 if [ "$PORT" != "30000" ]; then

@@ -16,21 +16,17 @@ challenges:
   teaser: Create your first service on Kubernetes
   notes:
   - type: text
-    title: ""
     contents: A **Service** defines how an application is **exposed** on your cluster.
   - type: text
-    title: ""
     contents: |-
       Services can be defined as one of several types
       * ClusterIP - the default type, used to connect applications within your cluster
       * NodePort - exposing a specific port on the node your application is running on
       * LoadBalancer - creating an external loadbalancer with a supported cloud provider
   - type: text
-    title: ""
-    contents: In these challenges, we'll focus on creating **ClusterIP** and **NodePort**
-      services
+    contents: |-
+      In these challenges, we'll focus on creating **ClusterIP** and **NodePort** services
   - type: text
-    title: ""
     contents: |-
       The easiest way to create a Service and expose an app is by using **kubectl expose**. For example
       ```
