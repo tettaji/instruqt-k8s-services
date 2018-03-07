@@ -5,7 +5,7 @@ icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/kubernetes.png
 title: Exposing a Kubernetes app
 teaser: Using Services to expose your app to the outside world
 description: |-
-  In order to be able to connect several applications within your Kubernetes cluster, 
+  In order to connect several applications within your Kubernetes cluster, 
   or to be able to connect to an app from outside your cluster, resources called "Services" are used.
 tags:
 - kubernetes
@@ -29,7 +29,7 @@ challenges:
       In these challenges, we'll focus on creating **ClusterIP** and **NodePort** services
   - type: text
     contents: |-
-      The easiest way to expose a service is by using **kubectl expose**, for example
+      The easiest way to create a Service and expose an app is by using **kubectl expose**. For example
       ```
       kubectl expose deployment <deploymentname> --port=80 --target-port=8080
       ```
@@ -39,6 +39,8 @@ challenges:
 
     Create a service of type **NodePort** by using **kubectl expose**.
     Expose it on port **8080**, but check the deployment using **kubectl describe** to get the required target-port.
+
+    You can check the **Service** tab to see if the nginx service is exposed publicly.
   difficulty: basic
   unlocks:
   - secret-definitions
@@ -51,6 +53,12 @@ challenges:
     hostname: kubernetes
     port: 8001
     path: "/api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy/#!/deployment?namespace=default"
+  - type: service
+    title: Service
+    hostname: kubernetes
+    port: 8001
+    path: "/api/v1/namespaces/default/services/nginx/proxy/"
 developers:
 - tettaji@xebia.com
+- eswets@gmail.com
 published: false

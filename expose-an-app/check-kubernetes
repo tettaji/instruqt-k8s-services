@@ -1,0 +1,29 @@
+#!/bin/bash
+# Check if deployment is exposed
+COMMAND=$(cat /root/.bash_history | grep -e "^kubectl expose deploy nginx" -e "^kubectl expose deployment nginx" | wc -l)
+if [ $COMMAND -eq 0 ]; then
+  echo "FAIL: the nginx deployment wasn't exposed using kubectl. Make sure to expose the deployment, not just the pod"
+  exit 1
+fi
+
+SERVICE=$(kubectl get svc nginx -o json)
+
+TYPE=$(echo $SERVICE | jq -r '.spec.type')
+if [ "$TYPE" != "NodePort" ]; then
+  echo "FAIL: The service type isn't NodePort. Use kubectl expose --help to see how to set type."
+  exit 1
+fi
+
+PORT=$(echo $SERVICE | jq -r '.spec.ports[0].port')
+if [ "$PORT" != "8080" ]; then
+  echo "FAIL: The exposed port isn't set to 8080."
+  exit 1
+fi
+
+TARGETPORT=$(echo $SERVICE | jq -r '.spec.ports[0].targetPort')
+if [ "$TARGETPORT" != "80" ]; then
+  echo "FAIL: The target port isn't set correctly. Use kubectl describe on the nginx deployment to get the correct port."
+  exit 1
+fi
+
+exit 0
