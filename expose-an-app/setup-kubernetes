@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kubectl run nginx --image=nginx --port=8080 --target-port=80
