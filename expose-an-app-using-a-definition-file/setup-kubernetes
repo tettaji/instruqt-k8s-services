@@ -1,7 +1,5 @@
 #!/bin/bash
 
-kubectl 
-
 cat > /root/nginx-service.yml <<EOF
 ---
 apiVersion: v1
@@ -13,6 +11,5 @@ spec:
   selector:
     run: nginx
 EOF
-
 
 exit 0

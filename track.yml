@@ -88,7 +88,7 @@ challenges:
 
     We have prepared a Service definition for you in the file **nginx-service.yml**.
 
-    Finish the Service definition by editing the YAML file and pointing the Service to the correct target-port.
+    Finish the Service definition by editing the YAML file and exposing the nginx application on port 30000.
   difficulty: basic
   unlocks: []
   tabs:
