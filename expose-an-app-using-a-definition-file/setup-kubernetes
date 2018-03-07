@@ -1,0 +1,18 @@
+#!/bin/bash
+
+kubectl 
+
+cat > /root/nginx-service.yml <<EOF
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  # Incomplete. Add the port definition here.
+  selector:
+    run: nginx
+EOF
+
+
+exit 0

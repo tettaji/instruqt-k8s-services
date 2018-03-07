@@ -4,9 +4,9 @@ slug: kubernetes-services
 icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/kubernetes.png
 title: Exposing a Kubernetes app
 teaser: Using Services to expose your app to the outside world
-description: |-
-  In order to be able to connect several applications within your Kubernetes cluster, 
-  or to be able to connect to an app from outside your cluster, resources called "Services" are used.
+description: "In order to be able to connect several applications within your Kubernetes
+  cluster, \nor to be able to connect to an app from outside your cluster, resources
+  called \"Services\" are used."
 tags:
 - kubernetes
 challenges:
@@ -16,18 +16,21 @@ challenges:
   teaser: Create your first service on Kubernetes
   notes:
   - type: text
-    contents: |-
-      A **Service** defines how an application is **exposed** on your cluster.
+    title: ""
+    contents: A **Service** defines how an application is **exposed** on your cluster.
   - type: text
+    title: ""
     contents: |-
       Services can be defined as one of several types
       * ClusterIP - the default type, used to connect applications within your cluster
       * NodePort - exposing a specific port on the node your application is running on
       * LoadBalancer - creating an external loadbalancer with a supported cloud provider
   - type: text
-    contents: |-
-      In these challenges, we'll focus on creating **ClusterIP** and **NodePort** services
+    title: ""
+    contents: In these challenges, we'll focus on creating **ClusterIP** and **NodePort**
+      services
   - type: text
+    title: ""
     contents: |-
       The easiest way to expose a service is by using **kubectl expose**, for example
       ```
@@ -41,7 +44,7 @@ challenges:
     Expose it on port **8080**, but check the deployment using **kubectl describe** to get the required target-port.
   difficulty: basic
   unlocks:
-  - secret-definitions
+  - expose-an-app-using-a-definition-file
   tabs:
   - type: terminal
     title: Shell
@@ -50,7 +53,42 @@ challenges:
     title: Kubernetes
     hostname: kubernetes
     port: 8001
-    path: "/api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy/#!/deployment?namespace=default"
+    path: /api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy/#!/deployment?namespace=default
+- slug: expose-an-app-using-a-definition-file
+  credits: 10
+  title: Expose an app using a definition file
+  teaser: Expose an app using a definition file
+  notes:
+  - type: text
+    title: YAML definition for a Service
+    contents: The CLI command `kubectl expose` creates a Service. This is fine for testing purposes, but we would like a 
+  - type: text
+    title: YAML definition for a Service
+    contents: In order to store all our deployment scripts under version control, it is easier to store the representation of the Service in a YAML file.
+  - type: text
+    title: YAML definition for a Service
+    contents: |-
+      For a basic Service, the port definition looks as follows
+
+      ```
+      ports:
+        - port: <Exposed port>
+          targetPort: <Port in container>
+          protocol: TCP
+      ```
+  assignment: |-
+    The **nginx** deployment is still running.
+
+    We have prepared a Service definition for you in the file **nginx-service.yml**.
+
+    Finish the Service definition by editing the YAML file and pointing the Service to the correct target-port.
+  difficulty: basic
+  unlocks: []
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: kubernetes
 developers:
 - tettaji@xebia.com
 published: false
+
