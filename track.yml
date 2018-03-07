@@ -67,21 +67,23 @@ challenges:
   teaser: Expose an app using a definition file
   notes:
   - type: text
-    title: YAML definition for a Service
-    contents: The CLI command `kubectl expose` creates a Service. This is fine for testing purposes, but we would like a 
-  - type: text
-    title: YAML definition for a Service
     contents: In order to store all our deployment scripts under version control, it is easier to store the representation of the Service in a YAML file.
   - type: text
-    title: YAML definition for a Service
     contents: |-
-      For a basic Service, the port definition looks as follows
+      For a basic Service, the definition file looks as follows
 
       ```
-      ports:
-        - port: <Exposed port>
+      kind: Service
+      apiVersion: v1
+      metadata:
+        name: my-service
+      spec:
+        selector:
+          app: MyApp
+        ports:
+        - protocol: TCP
+          port: <Port to expose>
           targetPort: <Port in container>
-          protocol: TCP
       ```
   assignment: |-
     The **nginx** deployment is still running.
